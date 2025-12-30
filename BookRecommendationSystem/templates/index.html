@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2 class="section-title">{{ title }}</h2>
+    <div class="book-grid">
+        {% for book in books %}
+        <div class="book-card">
+            <div class="book-info">
+                <h3><a href="/book/{{ book.Id }}">{{ book.Name }}</a></h3>
+                <p class="author">by {{ book.Authors }}</p>
+                <div class="rating">
+                    <span class="stars">★</span> {{ book.Rating }}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p>No books found.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

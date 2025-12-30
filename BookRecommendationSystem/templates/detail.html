@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="book-detail">
+        <div class="detail-header">
+            <h1>{{ book.Name }}</h1>
+            <p class="author">by {{ book.Authors }}</p>
+            <div class="meta">
+                <span><strong>Publisher:</strong> {{ book.Publisher }}</span>
+                <span><strong>Year:</strong> {{ book.PublishYear }}</span>
+                <span><strong>Rating:</strong> {{ book.Rating }} / 5</span>
+                <span><strong>Pages:</strong> {{ book.pagesNumber }}</span>
+            </div>
+        </div>
+        
+        <div class="reviews" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
+            <h3>Reviews</h3>
+            {% if reviews %}
+                <ul style="list-style-type: none; padding: 0;">
+                    {% for review in reviews %}
+                    <li style="background: #f9f9f9; padding: 10px; margin-bottom: 10px; border-radius: 4px; border-left: 4px solid #e74c3c;">
+                        "{{ review }}"
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet.</p>
+            {% endif %}
+        </div>
+
+        <div class="recommendations">
+            <h3>You might also like...</h3>
+            <div class="book-grid">
+                {% for rec in recommendations %}
+                <div class="book-card">
+                    <div class="book-info">
+                        <h4><a href="/book/{{ rec.Id }}">{{ rec.Name }}</a></h4>
+                        <p class="author">{{ rec.Authors }}</p>
+                        <div class="rating">★ {{ rec.Rating }}</div>
+                    </div>
+                </div>
+                {% else %}
+                <p>No recommendations available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

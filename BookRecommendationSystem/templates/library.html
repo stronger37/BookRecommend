@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2 class="section-title">{{ title }}</h2>
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <thead>
+                <tr style="background-color: #2c3e50; color: white; text-align: left;">
+                    <th style="padding: 12px 15px;">ID</th>
+                    <th style="padding: 12px 15px;">Title</th>
+                    <th style="padding: 12px 15px;">Author</th>
+                    <th style="padding: 12px 15px;">Rating</th>
+                    <th style="padding: 12px 15px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 15px;">{{ book.Id }}</td>
+                    <td style="padding: 12px 15px;">{{ book.Name }}</td>
+                    <td style="padding: 12px 15px;">{{ book.Authors }}</td>
+                    <td style="padding: 12px 15px;">{{ book.Rating }}</td>
+                    <td style="padding: 12px 15px;">
+                        <a href="/book/{{ book.Id }}" style="color: #e74c3c; text-decoration: none; font-weight: bold;">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
